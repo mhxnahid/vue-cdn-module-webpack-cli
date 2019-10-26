@@ -10,16 +10,22 @@
   },
   "devDependencies": {
     "css-loader": "^3.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "rimraf": "^3.0.0",
     "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
-    "webpack:dev": "webpack-dev-server --mode=development --history-api-fallback --hot",
-    "build:dev": "./node_modules/webpack-cli/bin/cli.js --mode=development --watch",
-    "build:prod": "./node_modules/webpack-cli/bin/cli.js --mode=production"
+    "clean": "rimraf dist",
+    "webpack:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode=development --history-api-fallback",
+    "build:dev": "npm run clean && ./node_modules/webpack-cli/bin/cli.js --mode=development --watch",
+    "build:prod": "npm run clean && ./node_modules/webpack-cli/bin/cli.js --mode=production"
   },
   "author": "",
   "license": "ISC"

@@ -1,11 +1,14 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './main.js',
     output: {
-        filename: 'main.js',
-        publicPath: path.resolve(__dirname, '/dist/'),
+        filename: '[name].[chunkhash].bundle.js',
+		chunkFilename: '[name].[chunkhash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
@@ -14,13 +17,20 @@ module.exports = {
         },
         extensions: ['*', '.js', '.vue', '.json']
     },
+    optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					chunks: 'initial',
+					name: 'vendor',
+					test: 'vendor',
+					enforce: true
+				},
+			}
+		},
+		runtimeChunk: true
+	},
     devServer: {
-        contentBase: path.resolve(__dirname, './'),
-        publicPath: path.resolve(__dirname, '/dist/'),
-        stats: {
-            children: false,
-            maxModules: 0
-        },
         port: 3001
     },
     module: {
@@ -29,13 +39,32 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             },
+			{
+				test: /\.html$/,
+				use: {
+					loader: 'html-loader'
+				}
+			},
             {
-                test: /\.css$/,
-                use: ['vue-style-loader', 'css-loader']
-            }
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader'
+				]
+			}
         ]
     },
     plugins: [
         new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+			template: './index.html'
+        }),
+        new MiniCssExtractPlugin({
+			filename: '[name].css',
+			chunkFilename: '[id].css'
+        }),
+        new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+		})
     ]
 }
