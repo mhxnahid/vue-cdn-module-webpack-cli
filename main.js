@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import Vheader from './Vheader'
 import Vhome from './Vhome'
-import Vabout from './Vabout.js'
+import Vabout from './Vabout'
 import Verror from './Verror.js'
 
 Vue.use(VueRouter)
@@ -15,7 +15,7 @@ const router = new VueRouter({
         {path: '*', component: Verror}
     ],
     mode: 'history',
-    base: '/test/vue-cdn-module-webpack-cli/'
+    base: '/'
 })
 
 new Vue({
