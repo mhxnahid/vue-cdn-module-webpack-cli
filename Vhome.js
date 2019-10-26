@@ -1,7 +1,9 @@
+//import * as moment from 'moment'
+
 const home = {
     data(){
         return {
-            time: moment().format('dddd')
+            time: ''
         }
     },
     template: `<div>This is the home page

@@ -1,5 +1,5 @@
-import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.esm.browser.min.js'
-import VueRouter from 'https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.1.3/vue-router.esm.browser.min.js'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 import Vheader from './Vheader.js'
 import Vhome from './Vhome.js'
