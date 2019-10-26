@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Vheader from './Vheader.js'
-import Vhome from './Vhome.js'
+import Vheader from './Vheader'
+import Vhome from './Vhome'
 import Vabout from './Vabout.js'
 import Verror from './Verror.js'
 
