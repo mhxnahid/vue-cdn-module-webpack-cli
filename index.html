@@ -8,37 +8,11 @@
 </head>
 <body>
     <div id="app">
-        {{works}}
-        <form action="">
-            <input type="text" v-model.lazy="text">
-            {{text}}
-            <button type="button">Submit</button>
-        </form>
-        <div v-for="a in [1,2,3]">
-            <Comp/>
-        </div>
+        <Vheader></Vheader>
+        <router-view></router-view>
     </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
-<script>
-const Comp = Vue.component('Comp', {
-    data(){
-        return {
-            comp: 'Text'
-        }
-    },
-    template: `<div>This is a component - {{comp}}</div>`
-});
-
-new Vue({
-    el: '#app',
-    data: {
-        works: 'Vue works!',
-        text: ''
-    },
-    components: {
-        Comp
-    }
-})
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script nomodule>alert('Hooha, upgrade yer browser!')</script>
+<script src="./main.js" type="module"></script>
 </body>
 </html>
