@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './main.js',
+    entry: './src/main.js',
     output: {
         filename: '[name].[chunkhash].bundle.js',
 		chunkFilename: '[name].[chunkhash].bundle.js',
@@ -57,7 +57,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-			template: './index.html'
+			template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
 			filename: '[name].css',

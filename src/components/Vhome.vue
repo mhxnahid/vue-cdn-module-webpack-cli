@@ -1,6 +1,6 @@
 <template>
   <div>
-    This is the home page
+    This is the home page?
     <div class="time">Today is {{time}}</div>
   </div>
 </template>
