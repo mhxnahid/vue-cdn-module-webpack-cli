@@ -12,6 +12,8 @@ import './main.css';
 import router from './router'
 import store from './store'
 
+import variables from './services/variables'
+
 store.dispatch('tryAutologin', {bypsss: false, toDashboard: false})
 
 Vue.prototype.$tokenFetchEcho =  async() => {
@@ -21,8 +23,8 @@ Vue.prototype.$tokenFetchEcho =  async() => {
         key: 'PUSHERKEY',
         cluster: 'mt1',
         encrypted: false,
-        wsHost: '127.0.0.1',
-        authEndpoint: 'http://127.0.0.1:8000/broadcasting/auth',
+        wsHost: variables.HOST_URL, // '127.0.0.1'
+        authEndpoint: variables.WS_AUTH_URL, //'http://127.0.0.1:8000/broadcasting/auth'
         auth: {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -30,6 +32,7 @@ Vue.prototype.$tokenFetchEcho =  async() => {
         },
         wsPort: 6001,
         disableStats: true,
+        enabledTransports: ['ws', 'wss'],
     });
 }
 

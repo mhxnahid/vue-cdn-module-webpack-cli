@@ -20,8 +20,8 @@ export default {
       list: [
         { l: "/", t: "Home" },
         { l: "/about", t: "About" },
-        { l: "/posts", t: "Posts" },
-        { l: "/notifications", t: "Notifications" },
+        //{ l: "/posts", t: "Posts" },
+        { l: "/notifications", t: "Msaingar" },
         //{ l: "/login", t: "Login" },
         //{ l: "/register", t: "Register" },
         //{ l: "/404", t: "404" }

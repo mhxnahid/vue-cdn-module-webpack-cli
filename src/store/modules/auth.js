@@ -98,7 +98,7 @@ const actions = {
         const logged = await getters.getUser
         if(!logged)return
         Echo.channel(`private-chat.user.${logged.id}`).listen("PrivateChatEvent", message => {
-            console.log(message)
+            //console.log(message)
             //return
             toastService('warn', 'New Message', `${message.senderName}: ${message.message}`)
             dispatch('addChatMessage', {message: message.message, socket: true, to_user_id: parseInt(message.user_id)});
