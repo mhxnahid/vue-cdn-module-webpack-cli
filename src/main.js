@@ -1,41 +1,56 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import CxltToastr from 'cxlt-vue2-toastr'
+import VuejsDialog from 'vuejs-dialog';
+import Echo from 'laravel-echo';
+import 'pusher-js'
+
+import Vheader from './components/Vheader'
+import Vhome from './components/Vhome'
 
 import './main.css';
 
-import Vheader from './components/Vheader';
-import Vhome from './components/Vhome';
-const Vabout = () => import('./components/Vabout');
-const Verror = () => import( './components/Verror');
-const Posts = () => import('./components/Posts');
-
+import router from './router'
 import store from './store'
 
-Vue.use(VueRouter);
+store.dispatch('tryAutologin', {bypsss: false, toDashboard: false})
 
-const router = new VueRouter({
-    routes: [
-        {path: '/', component: Vhome},
-        {path: '/about', component: Vabout},
-        {path: '/posts', component: Posts},
-        {path: '*', component: Verror}
-    ],
-    mode: 'history',
-    base: '/'
+Vue.prototype.$tokenFetchEcho =  async() => {
+    const token =  await store.dispatch('getAccessToken')
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: 'PUSHERKEY',
+        cluster: 'mt1',
+        encrypted: false,
+        wsHost: '127.0.0.1',
+        authEndpoint: 'http://127.0.0.1:8000/broadcasting/auth',
+        auth: {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        },
+        wsPort: 6001,
+        disableStats: true,
+    });
+}
+
+
+Vue.use(CxltToastr, {
+    position: 'bottom left',
+    timeOut: 5000
 });
+Vue.use(VuejsDialog);
+
 
 Vue.config.productionTip = false;
 
 new Vue({
     router,
     store,
-    el: '#app',
-    data: {
-        works: 'Vue works!',
-        text: ''
-    },
     components: {
         Vheader,
         Vhome,
+    },
+    created(){
+        this.$tokenFetchEcho()
     }
-});
+}).$mount('#app');

@@ -1,7 +1,8 @@
 <template>
   <div>
-    This is the home page?
-    <div class="time">Today is {{time}}</div>
+    <div class="text-center">
+      <img src="assets/mononoke.jpg" alt="Mononoke" class="img-fluid rounded w-25">
+    </div>
   </div>
 </template>
 
